@@ -1,5 +1,5 @@
 [project]
-name = "twicketsbot"
+name = "polaris"
 version = "0.1.0"
 description = "A Discord ticketing bot"
 authors = [{name = "Your Name", email = "you@example.com"}]

@@ -139,7 +139,7 @@ def seed_db_from_config(config: dict, db_path: Path = CONFIG_DB_PATH) -> None:
     """
     Populate (or overwrite) the SQLite config database from a config dict.
     Useful for migrating from config.yml to DB-backed config.
-    Call once: python -c "from twicketsbot.config import load_config, seed_db_from_config; seed_db_from_config(load_config())"
+    Call once: python -c "from polaris.config import load_config, seed_db_from_config; seed_db_from_config(load_config())"
     """
     init_config_db(db_path)
     with sqlite3.connect(db_path) as con:

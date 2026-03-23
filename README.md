@@ -1,4 +1,4 @@
-# twickets
+# Polaris
 
 A Discord ticketing bot built with `discord.py`. Supports private threads and private channels, configurable ticket types with custom modal fields, role assignment, nickname updates, and full admin management via slash commands. Config can be loaded from a YAML file or a SQLite database.
 
@@ -43,7 +43,7 @@ The config database is written to `config.db` at the project root.
 ### 3. Run the bot
 
 ```bash
-PYTHONPATH=src:. uv run python -m twicketsbot.main
+PYTHONPATH=src:. uv run python -m polaris.main
 ```
 
 ### 4. Deploy channels and embeds
@@ -223,7 +223,7 @@ Lists all modal fields for a ticket type with their positions, required status, 
 
 ## Adding a new ticket type field to the schema
 
-The ticket type field schema is centralised in `_TICKET_TYPE_FIELDS` at the top of `src/twicketsbot/ticket_cog.py`. To add a new field that is managed via slash commands:
+The ticket type field schema is centralised in `_TICKET_TYPE_FIELDS` at the top of `src/polaris/ticket_cog.py`. To add a new field that is managed via slash commands:
 
 1. Add a column to the `ticket_types` table in `CREATE_CONFIG_TABLES` in `config.py`.
 2. Add a row to `_TICKET_TYPE_FIELDS` in `ticket_cog.py` — the describe text for both `/ticket_type create` and `/ticket_type update` is defined here.

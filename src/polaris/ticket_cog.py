@@ -5,7 +5,7 @@ from discord.ext import commands
 from discord import app_commands
 from typing import Optional
 
-from twicketsbot.ticket_ui import (
+from polaris.ticket_ui import (
     AssignView,
     CloseReasonModal,
     DescriptionModal,
@@ -63,10 +63,10 @@ class TicketCog(commands.Cog):
     def _reload_config(self) -> None:
         """Reload self.config from its source after a DB change."""
         if self._is_db_mode():
-            from twicketsbot.config import load_config_from_db
+            from polaris.config import load_config_from_db
             self.config = load_config_from_db()
         else:
-            from twicketsbot.config import load_config
+            from polaris.config import load_config
             self.config = load_config()
 
     def _resolve_staff_roles(self, guild: discord.Guild, ticket_cfg: dict) -> list[discord.Role]:
@@ -571,7 +571,7 @@ class TicketCog(commands.Cog):
                 ephemeral=True,
             )
             return
-        from twicketsbot.config import upsert_ticket_type
+        from polaris.config import upsert_ticket_type
         _p = locals()
         upsert_ticket_type(type_key, {field: _p[field] for field, _ in self._TICKET_TYPE_SCHEMA})
         self._reload_config()
@@ -621,7 +621,7 @@ class TicketCog(commands.Cog):
         if not data:
             await interaction.followup.send("No fields provided — nothing to update.", ephemeral=True)
             return
-        from twicketsbot.config import upsert_ticket_type
+        from polaris.config import upsert_ticket_type
         upsert_ticket_type(type_key, data)
         self._reload_config()
         changed = ", ".join(f"`{k}`" for k in data)
@@ -647,7 +647,7 @@ class TicketCog(commands.Cog):
         if type_key not in self.config.get("ticket_types", {}):
             await interaction.followup.send(f"Ticket type `{type_key}` not found.", ephemeral=True)
             return
-        from twicketsbot.config import delete_ticket_type_from_db
+        from polaris.config import delete_ticket_type_from_db
         deleted = delete_ticket_type_from_db(type_key)
         if deleted:
             self._reload_config()
@@ -761,7 +761,7 @@ class TicketCog(commands.Cog):
         data = {"placeholder": placeholder or "", "required": required}
         if position is not None:
             data["position"] = position
-        from twicketsbot.config import upsert_ticket_field
+        from polaris.config import upsert_ticket_field
         upsert_ticket_field(type_key, label, data)
         self._reload_config()
         await interaction.followup.send(
@@ -813,7 +813,7 @@ class TicketCog(commands.Cog):
         if not data:
             await interaction.followup.send("No fields provided — nothing to update.", ephemeral=True)
             return
-        from twicketsbot.config import upsert_ticket_field
+        from polaris.config import upsert_ticket_field
         upsert_ticket_field(type_key, label, data)
         self._reload_config()
         changed = ", ".join(f"`{k}`" for k in data)
@@ -843,7 +843,7 @@ class TicketCog(commands.Cog):
         if type_key not in self.config.get("ticket_types", {}):
             await interaction.followup.send(f"Ticket type `{type_key}` not found.", ephemeral=True)
             return
-        from twicketsbot.config import delete_ticket_field
+        from polaris.config import delete_ticket_field
         deleted = delete_ticket_field(type_key, label)
         if deleted:
             self._reload_config()
