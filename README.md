@@ -24,6 +24,7 @@ uv sync
 
 ```env
 DISCORD_TOKEN=your_bot_token_here
+DISCORD_GUILD=your_guild_id_here
 CONFIG_SOURCE=db   # or for testing: yaml
 ```
 
@@ -35,14 +36,7 @@ CONFIG_SOURCE=db   # or for testing: yaml
 
 **DB mode** (default) either:
 - Manage ticket types entirely via `/ticket_type` slash commands, or
-- Seed the database from an existing YAML file (one-time migration):
-
-```bash
-PYTHONPATH=src:. uv run python -c "
-from twicketsbot.config import load_config, seed_db_from_config
-seed_db_from_config(load_config())
-"
-```
+- Manage ticket types via sqlite command line
 
 The config database is written to `config.db` at the project root.
 

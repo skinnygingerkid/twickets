@@ -15,6 +15,10 @@ def get_token() -> str:
     load_dotenv(_ENV_PATH)
     return os.getenv("DISCORD_TOKEN")
 
+def get_guild() -> str:
+    load_dotenv(_ENV_PATH)
+    return os.getenv("DISCORD_GUILD")
+
 
 def load_config() -> dict:
     config_file = files("config").joinpath("config.yml")

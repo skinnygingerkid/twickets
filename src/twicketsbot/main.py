@@ -3,10 +3,10 @@ import os
 import discord
 from discord.ext import commands
 from discord import app_commands
-from .config import load_config, load_config_from_db, get_token
+from .config import get_guild, load_config, load_config_from_db, get_token
 from .ticket_cog import TicketCog
 
-_config_source = os.getenv("CONFIG_SOURCE", "yaml").lower()
+_config_source = os.getenv("CONFIG_SOURCE", "db").lower()
 if _config_source == "db":
     config = load_config_from_db()
     print("[main] Config loaded from SQLite database")
@@ -33,7 +33,7 @@ class Client(commands.Bot):
         print(f'Serving {len(self.guilds)} guild(s)')
         if not self.synced:
             try:
-                guild = discord.Object(id=1471132124948987956)  # Replace with your guild ID
+                guild = discord.Object(id=get_guild())  # Replace with your guild ID
                 commands_to_sync = self.tree.get_commands()
                 print(f"About to sync {len(commands_to_sync)} commands:")
                 for cmd in commands_to_sync:
