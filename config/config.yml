@@ -1,0 +1,55 @@
+bot:
+  token: "YOUR_DISCORD_TOKEN_HERE"
+  generic_call_channel: "🎫-create-a-ticket"
+  generic_call_category: "⭐➖➖ Support ➖➖⭐"
+  generic_archive_category: "⚙️➖➖Ticket Graveyard➖➖⚙️"
+  generic_ticketing_role: 
+    - "Ticket King"
+    - "Ticket Queen"
+
+ticket_types:
+  join-clan:
+    category: "⚙️➖➖Tickets➖➖⚙️"
+    channel: "🎟️-join-clan"
+    thread: true
+    update_nickname: true
+    assign_role: "member"
+    default_description: "I would like to join the clan."
+    extra_info: "If you have any questions then feel free to ask in here.\nA member of staff will be with you as soon as possible to add you in game!"
+    fields:
+      - label: "IGN"
+        placeholder: "Your exact in-game name"
+        required: true
+  join-as-guest:
+    category: "⚙️➖➖Tickets➖➖⚙️"
+    channel: "🎟️-join-as-guest"
+    thread: true
+    update_nickname: true
+    assign_role: "ally"
+    default_description: "I'd like to hang out as a guest in the server."
+    extra_info: "If you have any questions then feel free to ask in here, or close the ticket and enjoy your stay!"
+    fields:
+      - label: "IGN"
+        placeholder: "Your exact in-game name"
+        required: true
+  request-rank:
+    category: "⚙️➖➖Tickets➖➖⚙️"
+    channel: "🎟️-request-rank"
+    classified: true
+    classified_role: "leader"
+    thread: true
+    default_description: "I would like to request a rank change."
+    extra_info: "Think you're a big shot huh?\nHuh?\nHUH?!?!\n\nJust kidding, but please provide as much information as possible to help the staff make a decision on your request.\n\n:warning: Please attach any relevant screenshots or proof of achievements :warning:"
+    fields:
+      - label: "IGN"
+        placeholder: "Your exact in-game name"
+        required: true
+      - label: "Current Rank"
+        placeholder: "Your current rank in the clan"
+        required: true
+      - label: "Requested Rank"
+        placeholder: "The rank you are requesting"
+        required: true
+      - label: "Reason"
+        placeholder: "Why do you want this rank change?"
+        required: false
